@@ -137,7 +137,7 @@ switch (dz) {
             return f
         }
 
-        if (val === 0) {
+        if (pow === 0) {
             current = 1
         }
 
