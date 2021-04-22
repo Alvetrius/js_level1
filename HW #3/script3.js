@@ -8,28 +8,28 @@ switch (dz) {
         switch (meth) {
 
             case 1:
-
+                alert('С помощью while у меня не получается сделать, не знаю, как исправить')
                 let m = 2
-                let i = 3
                 let numbers = [2]
 
-                // nextPrime: 
-                while (m <= 100) {
+                nextPrime:
+                while (m++ <= 100) {
                     if (m % 2 === 0) {
-                        m++
+                        continue nextPrime
                     } else {
-                        while (i <= m) {
+                        let i = 3
+                        while (i < m) {
                             if (m % i === 0) {
                                 break
                                 // continue nextPrime
                             } else {
                                 console.log(i)
-                                i += 2
+                                i++
                             }
                         }
                     }
                     numbers.push(m)
-                    m++
+                    // m++
                 }
                 alert(numbers)
                 break
@@ -43,7 +43,6 @@ switch (dz) {
                         if (i % j == 0) continue nextPrime
                     }
                     num.push(i)
-
                 }
                 alert(num)
                 break
