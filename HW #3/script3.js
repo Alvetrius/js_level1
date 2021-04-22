@@ -8,28 +8,25 @@ switch (dz) {
         switch (meth) {
 
             case 1:
-                alert('С помощью while у меня не получается сделать, не знаю, как исправить')
                 let m = 2
                 let numbers = [2]
 
                 nextPrime:
-                while (m++ <= 100) {
+                while (m++ < 100) {
                     if (m % 2 === 0) {
                         continue nextPrime
                     } else {
                         let i = 3
                         while (i < m) {
                             if (m % i === 0) {
-                                break
-                                // continue nextPrime
+                                continue nextPrime
                             } else {
                                 console.log(i)
-                                i++
+                                i += 2
                             }
                         }
                     }
                     numbers.push(m)
-                    // m++
                 }
                 alert(numbers)
                 break
@@ -38,7 +35,8 @@ switch (dz) {
 
                 let n = 100
                 let num = []
-                nextPrime: for (let i = 2; i <= n; i++) {
+                nextPrime:
+                for (let i = 2; i <= n; i++) {
                     for (let j = 2; j < i; j++) {
                         if (i % j == 0) continue nextPrime
                     }
@@ -76,7 +74,7 @@ switch (dz) {
         alert('Вывод чисел от 0 до 9 без использования тела цикла')
         for (let v = 0; v <= 9; alert(v++)) {
 
-        } //Вывод чисел от 0 до 9 без использования тела цикла
+        }
         break
 
     case 4:
