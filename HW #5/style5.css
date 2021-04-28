@@ -1,0 +1,20 @@
+.board {
+    width: 1024px;
+    min-height: 1024px;
+    border: 2px solid black;
+    box-sizing: border-box;
+}
+
+.black_cell {
+    width: 128px;
+    height: 128px;
+    background-color: black;
+    box-sizing: border-box;
+}
+
+.white_cell {
+    width: 128px;
+    height: 128px;
+    background-color: white;
+    box-sizing: border-box;
+}
