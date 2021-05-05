@@ -14,6 +14,16 @@ function basket() {
         quantity: 0
     }
 
+    let catalog = document.getElementById('catalog')
+
+    let board = document.getElementById('board')
+
+    let message = document.createElement('span')
+
+    message.className = 'basket_title'
+    message = 'Корзина пуста'
+    board.innerHTML = message
+
     object_catalog.quantity = parseInt(prompt('Введите количество наименований в каталоге'))
 
     let x1 = 1
@@ -25,12 +35,35 @@ function basket() {
         x3 = parseInt(prompt('Введите стоимость этого товара'))
         object_catalog.name.push (x2)
         object_catalog.price.push (x3)
-        object_catalog.buy.push ('buy' + x1)
-        console.log(object_catalog)
+        object_catalog.buy.push ('btn' + x1)
         x1++
     }
 
-    let catalog = document.getElementById('catalog')
+    function countBasketPrice(arr1) {
+        let q = 0
+        for (let c = 0; c < arr1.length; c++) {
+            q += arr1[c]
+        }
+        return q
+    }
+
+    function addBasket (h1) {
+        basket.total = countBasketPrice(h1)
+    
+        if (basket.quantity !== 0) {
+            message = `В корзине ${basket.quantity} товаров на сумму  ${basket.total} рублей`
+            } else {
+            message = `Корзина пуста`
+        }
+        board.innerHTML = message
+
+        for (let r = 0; r < basket.name.length; r++) {
+            let f = document.createElement('span')
+            f.className = 'basket_item'
+            f.innerHTML = `${basket.name[r]} - ${basket.sum[r]}`
+            board.appendChild(f)
+        }
+    }
 
     function createCatalog(arr1, arr2, catalog) {
         let v
@@ -47,46 +80,26 @@ function basket() {
             u.innerHTML = item_name
             y = document.createElement('span')
             y.className = 'catalog_item_price'
-            y.innerHTML = item_price
+            y.innerHTML = item_price + ' рублей'
             z = document.createElement('button')
             z.className = 'catalog_item_btn'
             z.innerText = 'купить'
             z.id = 'btn' + (n+1)
+            z.addEventListener('click', function () {
+                basket.sum.push(item_price)
+                basket.name.push(item_name)
+                basket.quantity += 1                
+                addBasket(basket.sum)
+            })
             v.appendChild(u)
             v.appendChild(y)
             v.appendChild(z)
             w = catalog.appendChild(v)
         }
-        return v
+        return w
     }
 
     createCatalog(object_catalog.name, object_catalog.price, catalog)
-
-    let btn1 = document.getElementById('btn1')
-    if (btn1.addEventListener('click')) {
-        basket.sum.push(object_catalog.price[0])
-        basket.quantity += 1
-    }
-
-    function countBasketPrice(arr) {
-        let q = 0
-        for (let c = 0; c < arr.length; c++) {
-            q += arr[c]
-        }
-        return q
-    }
-
-    basket.total = countBasketPrice(basket.sum)
-
-    let message
-
-    if (basket.quantity !== 0) {
-        message = 'В корзине ' + basket.quantity + ' товаров на сумму ' + basket.total + ' рублей'
-    } else {
-        message = 'Корзина пуста'
-    }
-
-    board.innerHTML = message
 }
 
-basket()
+window.onload = basket

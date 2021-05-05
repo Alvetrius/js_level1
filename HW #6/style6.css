@@ -7,13 +7,43 @@
 
 .basket {
     margin-bottom: 30px;
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     width: auto;
-    height: 64px;
+    min-height: 64px;
     padding: 16px;
     border: 2px solid black;
     text-align: center;
     box-sizing: border-box;
+}
+
+.basket_title {
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.basket_item {
+    margin-bottom: 10px;
+    border: 1px solid black;
+    box-sizing: border-box;
+}
+
+.basket_item:first-of-type {
+    margin-top: 10px;
+}
+
+.basket_item:last-of-type {
+    margin: 0;
+}
+
+.basket_item:hover {
+    border: 1px solid red;
+}
+
+.basket_item:active {
+    border: 1px solid black;
 }
 
 .catalog {
