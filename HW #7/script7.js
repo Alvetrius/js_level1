@@ -47,20 +47,34 @@ function basket() {
         return q
     }
 
-    function addBasket (h1) {
-        basket.total = countBasketPrice(h1)
-    
+    function basket_final () {
         if (basket.quantity !== 0) {
             message = `В корзине ${basket.quantity} товаров на сумму  ${basket.total} рублей`
             } else {
             message = `Корзина пуста`
         }
         board.innerHTML = message
+    }
 
-        for (let r = 0; r < basket.name.length; r++) {
+    function addBasket (h1) {
+
+        basket.total = countBasketPrice(h1)
+    
+        basket_final ()
+
+        for (let r = 0; r < basket.quantity; r++) {
             let f = document.createElement('span')
             f.className = 'basket_item'
+            f.id = 'article' + r
             f.innerHTML = `${basket.name[r]} - ${basket.sum[r]}`
+            f.addEventListener('click', function () {
+                board.removeChild(f)
+                basket.quantity -= 1
+                basket.sum.splice(r, 1)
+                basket.name.splice(r, 1)
+                addBasket(basket.sum)
+                console.log(basket)
+            })
             board.appendChild(f)
         }
     }
@@ -90,6 +104,7 @@ function basket() {
                 basket.name.push(item_name)
                 basket.quantity += 1                
                 addBasket(basket.sum)
+                console.log(basket)
             })
             v.appendChild(u)
             v.appendChild(y)
